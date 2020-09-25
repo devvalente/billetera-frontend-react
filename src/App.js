@@ -1,24 +1,90 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState, useEffect} from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
+import axios from 'axios';
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  const baseUrl='http://127.0.0.1/billetera-virtual/backend/';
+  const [data, setData]=useState([]);
+  const [modalInsertar, setModalInsertar]=useState(false);
+  //Met Open Modal
+  const abrirCerrarModalInsertar=()=>{
+    setModalInsertar(!modalInsertar);
+
+  }
+  const peticionesGet=async()=>{
+    await axios.get(baseUrl)
+    .then(response=>{
+      setData(response.data);
+      console.log(response.data);
+    })
+  }
+  useEffect(()=>{
+    peticionesGet();
+  }, [] )
+  return (    
+    <div class="container">
+      <br /><br />
+      <button className="btn btn-success" onClick={()=>abrirCerrarModalInsertar()} >Insertar</button>
+      <br /><br />
+      <h3>Lista de Clientes</h3>
+      <table className="table table-striped">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Documento</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>Celular</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {data.map(clientes=>(
+            <tr key={clientes.id}>
+              <td>{clientes.id}</td>
+              <td>{clientes.documento}</td>
+              <td>{clientes.primerNombre}</td>
+              <td>{clientes.primerApellido}</td>
+              <td>{clientes.email}</td>
+              <td>{clientes.celular}</td>
+              <td>
+                <button className="btn btn-primary">Editar</button>
+                <button className="btn btn-danger">Eliminar</button>
+              </td>
+            </tr>            
+          )
+            
+          )}
+        </tbody>
+
+      </table>
+
+
+      <Modal isOpen={modalInsertar}>
+        <ModalHeader>Registrar Cliente</ModalHeader>
+        <ModalBody>
+          <div className="form-group">
+            <label>Nombre:</label>
+            <br />
+            <input type="text" className="form-control" />
+            <br />
+            <label>Apellido</label>
+            <br />
+            <input type="text" className="form-control" />
+            <br />
+          </div>          
+        </ModalBody>
+        <ModalFooter>
+          <button className="btn btn-primary">Insertar</button>{""}
+          <button className="btn btn-danger" onClick={()=>abrirCerrarModalInsertar()} >Cancelar</button>
+        </ModalFooter>
+      </Modal>
+
+
     </div>
   );
 }
