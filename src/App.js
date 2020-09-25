@@ -26,7 +26,7 @@ function App() {
   return (    
     <div class="container">
       <br /><br />
-      <button className="btn btn-success" onClick={()=>abrirCerrarModalInsertar()} >Insertar</button>
+      <button className="btn btn-success" onClick={()=>abrirCerrarModalInsertar()} >Nuevo Cliente</button>
       <br /><br />
       <h3>Lista de Clientes</h3>
       <table className="table table-striped">
@@ -68,18 +68,30 @@ function App() {
         <ModalHeader>Registrar Cliente</ModalHeader>
         <ModalBody>
           <div className="form-group">
+            <label>Document:</label>
+            <br />
+            <input type="text" className="form-control" />
+            <br />
             <label>Nombre:</label>
             <br />
             <input type="text" className="form-control" />
             <br />
-            <label>Apellido</label>
+            <label>Apellido:</label>
+            <br />
+            <input type="text" className="form-control" />
+            <br />
+            <label>Email:</label>
+            <br />
+            <input type="text" className="form-control" />
+            <br />
+            <label>Celular:</label>
             <br />
             <input type="text" className="form-control" />
             <br />
           </div>          
         </ModalBody>
         <ModalFooter>
-          <button className="btn btn-primary">Insertar</button>{""}
+          <button className="btn btn-primary">Registrar</button>{""}
           <button className="btn btn-danger" onClick={()=>abrirCerrarModalInsertar()} >Cancelar</button>
         </ModalFooter>
       </Modal>
