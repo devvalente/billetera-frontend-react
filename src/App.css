@@ -1,38 +1,57 @@
-.App {
-  text-align: center;
+button.btn-menu{
+	margin-left: 8px;
+}
+.modal-dialog.modal-productos{
+	max-width: 1000px;
+	width: 1000px;	
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.modal-productos-body{
+	background: rgba(230,230,200,1);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.div-reset{
+	clear:both;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.contenedor-producto{
+	width: 33%;
+	height: 340px;
+	float: left;	
 }
 
-.App-link {
-  color: #61dafb;
-}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+	div.contenedor-imagen{
+		width: 200px;
+		margin: auto;
+	}
+
+	img.img_catalago{
+		float: left;
+		transition: all .5s;
+	}
+
+	#img1_1{width: 200px; height: 200px; opacity: 1}
+	#img1_2{width: 0%;    height: 200px; opacity: 0}
+
+	div.contenedor-imagen:hover #img1_1{		
+		width: 0%; opacity: 0;
+	}
+
+	div.contenedor-imagen:hover #img1_2{		
+		width: 200px; opacity: 1;
+	}
+
+	div.div-detalles-producto{
+		text-align: center;
+	}
+
+	div.div-detalles-costo{
+		margin: auto;
+	}
+
+
+button.btn-comprar{
+	display: block;
+	margin: auto;
 }
